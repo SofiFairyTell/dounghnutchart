@@ -66,22 +66,43 @@ namespace PV_5
             Brush b3 = new SolidBrush(Color.Bisque);
             Brush b4 = new SolidBrush(Color.White);
 
-            double dot1 = Convert.ToDouble(this.dataGridView1["Column1", 0].Value);
-            double dot2 = Convert.ToDouble(this.dataGridView1["Column1", 1].Value);
+            double[] DotArrOut = new double[dataGridView1.RowCount]; // массив точек для внешнего ряда
+            double[] DotArrInn = new double[dataGridView1.RowCount]; // массив точек для внешнего ряда
+
+            for (int i = 0; i < dataGridView1.RowCount; i++)
+            {
+               DotArrOut[i] = Convert.ToDouble(this.dataGridView1["Column1",i].Value);
+            }
+
+            for (int i = 0; i < dataGridView1.RowCount; i++)
+            {
+                DotArrInn[i] = Convert.ToDouble(this.dataGridView1["Column2", i].Value);
+            }
 
             double dot12 = Convert.ToDouble(this.dataGridView1["Column2", 0].Value);
             double dot22 = Convert.ToDouble(this.dataGridView1["Column2", 1].Value);
-            
+
 
             //degree for first donut 
-            float total1 = (float)(dot1 + dot2);
-            float deg1 = (float)(dot1 / total1) * 360;
-            float deg2 = (float)(dot2 / total1) * 360;
+            float total1 = (float)(DotArrOut[0] + DotArrOut[1]);
+           
+            float deg1 = (float)(DotArrOut[0] / total1) * 360;
+            float deg2 = (float)(DotArrOut[1] / total1) * 360;
 
             //degree for second donut 
-            float total2 = (float)(dot12 + dot22);
-            float deg3 = (float)(dot12 / total2) * 360;
-            float deg4 = (float)(dot22 / total2) * 360;
+            float total2 = (float)(DotArrInn[0] + DotArrInn[1]);
+
+            float deg3 = (float)(DotArrInn[0] / total1) * 360;
+            float deg4 = (float)(DotArrInn[1] / total1) * 360;
+
+            //float total1 = (float)(dot1 + dot2);
+            //float deg1 = (float)(dot1 / total1) * 360;
+            //float deg2 = (float)(dot2 / total1) * 360;
+
+            //degree for second donut 
+            //float total2 = (float)(dot12 + dot22);
+            //float deg3 = (float)(dot12 / total2) * 360;
+            //float deg4 = (float)(dot22 / total2) * 360;
 
             TextureBrush myart = new TextureBrush(art);
 
